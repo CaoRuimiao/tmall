@@ -1,0 +1,160 @@
+// window.onload=function(){
+// // -----------------------head隐藏部分鼠标经过显示------------------------------------
+// 	var headerNav=document.getElementsByClassName('headerNav');
+// 	var headerHidden=document.getElementsByClassName('headerHidden');
+
+// 	for (var i = 0; i < headerNav.length; i++) {
+// 		headerNav[i].index=i;
+// 		headerNav[i].onmouseover=function(){
+// 			headerHidden[this.index].style.display='block';
+// 		};
+// 		headerNav[i].onmouseout=function(){
+// 			headerHidden[this.index].style.display='none';
+// 		};
+// 	}
+// // ----------------------菜单banner图-----------------------------
+// 	var bannerColor=document.getElementsByClassName('banner-color');
+// 	var bm1=document.getElementsByClassName('bm1');
+// 	var bm2=document.getElementsByClassName('bm2');
+// 	var bm3=document.getElementsByClassName('bm3');
+// 	var bm4=document.getElementsByClassName('bm4');
+// 	for (i = 0; i < bm1.length; i++) {
+// 		bm1[i].index=i;
+// 		bm1[i].onmouseover=function(){
+// 			bm2[this.index].style.display='block';
+// 			bm3[(this.index-1)].style.display='block';
+// 			bm4[(this.index-1)].style.display='block';
+// 			// bannerColor[(this.index-1)].style.background=colors[(this.index-1)];
+// 		};
+// 		bm1[i].onmouseout=function(){
+// 			bm2[this.index].style.display='none';
+// 			bm3[(this.index-1)].style.display='none';
+// 			bm4[(this.index-1)].style.display='none';
+// 			// bannerColor[this.index-1].style.background='white';
+// 		};
+// 	}
+
+// 	//----------------------------banner轮播鼠标经过------------------------
+// 	var b1=document.getElementsByClassName('b1');
+// 	var b2=document.getElementsByClassName('b2');
+// 	var bannerMainChang=document.getElementById('banner-main-chang');
+// 	var colors=['#C40000','#F3EDF1','#68C9A8','#B90AF9','#DBDBDB','#5E77F5'];
+// 	var OFFWIDTH=-bannerMainChang.firstElementChild.offsetWidth,
+// 		timespec=2000;
+// 	var count=0,timerId2;
+// 	b1[0].style.background='#C40000';
+// 	var red=b1[0];
+// 	var fn=function(){
+// 		bannerMainChang.style.marginLeft=OFFWIDTH*count+'px';
+// 		red.style.background='black';
+// 		b1[count].style.background='#C40000';
+// 		red=b1[count];
+// 		count++;
+// 		if(count==b1.length){count=0;}
+// 	};
+// 	timerId2=setInterval(fn,timespec);
+// 	for (i = 0; i < b1.length; i++) {
+// 		b1[i].index=i;
+// 		b1[i].onmouseover=function(){
+// 			red.style.background='black';
+// 			this.style.background='#C40000';
+// 			red=this;
+// 			clearInterval(timerId2);
+// 			bannerMainChang.style.marginLeft=OFFWIDTH*this.index+'px';
+// 			// bannerColor[this.index].style.background=colors[this.index];
+// 			//乳白色 #F3EDF1 绿色 #68C9A8 浅灰色 #DBDBDB 紫色 #B90AF9  蓝色 #5E77F5  
+// 		};
+// 		b1[i].onmouseout=function(){
+// 			clearInterval(timerId2);  //防止冒泡
+// 			timerId2=setInterval(fn,timespec);
+// 			if(this.index==b1.length-1){count=0;}
+// 			else{count=this.index+1;}
+// 		};
+// 	}
+	
+// 	// -----------------------右侧隐藏部分鼠标经过显示------------------------------------
+// 	var r1=document.getElementsByClassName('r1');
+// 	var r2=document.getElementsByClassName('r2');
+// 	var backTop=document.getElementById('right-nav-top');
+// 	for (i = 0; i < r1.length; i++) {
+// 		r1[i].index=i;
+// 		r1[i].onmouseover=function(){
+// 			r2[this.index].style.display='block';
+// 			// r2[this.index].style.webkitTransition='all 1s ease';
+// 			r2[this.index].style.marginRight=-10+'px';
+// 		};
+// 		r1[i].onmouseout=function(){
+// 			r2[this.index].style.display='none';
+// 			// r2[this.index].style.marginRight=0+'px';
+// 		};
+// 	}
+// 	// ---------------------------返回顶部---------------------------------
+// 	var start,timerId,SEC=2,TIME=300;
+// 	backTop.onclick=function(){
+// 		start=document.body.scrollTop;
+// 		clearInterval(timerId);
+// 		var cha=start/(TIME/SEC);
+// 		timerId=setInterval(function(){
+// 			document.body.scrollTop=start;
+// 			start-=cha;
+// 			if(start<=0){
+// 				clearInterval(timerId);
+// 			}
+// 		},10);
+
+// 	};
+
+
+// 	// 冻结左侧
+// 	var sn_nav_wrapper=document.getElementById('sn-nav-wrapper');
+// 	var sn_nav_wrapper_item=document.getElementsByClassName('sn-nav-wrapper-item');
+// 	var floor_item=document.getElementsByClassName('floor-item');
+// 	var timerId,start,end,xishu=1;
+// 	console.log(floor_item[0].offsetTop);
+// 	// if (sn_nav_wrapper.getBoundingClientRect().top>floor_item[0].offsetTop-sn_nav_wrapper.offsetTop) {
+// 	// 	sn_nav_wrapper.style.display='block';
+// 	// }else{
+// 	// 	sn_nav_wrapper.style.display='none';
+// 	// }
+// 	for (i = 0; i < floor_item.length; i++) {
+// 		sn_nav_wrapper_item[i].index=i;
+// 		sn_nav_wrapper_item[i].onclick=function(){
+// 			start=document.body.scrollTop;
+// 			end=floor_item[this.index].offsetTop-sn_nav_wrapper.getBoundingClientRect().top;
+// 			if (start>end) {
+// 				xishu=-1;
+// 			}else{
+// 				xishu=1;
+// 			}
+// 			var cha=Math.abs(start-end)/30;
+// 			clearInterval(timerId);
+// 			timerId=setInterval(function(){
+// 				document.body.scrollTop=start;
+// 				start+=xishu*cha;
+// 				if ((xishu>0)?(start>end):(start<end)) {
+// 				clearInterval(timerId);
+// 				}
+// 			},30);
+// 		};
+// 	}
+	
+// // --------------------------------滚动页面顶条、左条出来--------------------------------------------------
+// 	var tmallNav=document.getElementById('tmall-nav');
+// 	var banner=document.getElementById('banner');
+// 	console.log(tmallNav);
+// 	window.onscroll=function(){
+// 		if(banner.getBoundingClientRect().top<=-435){
+// 			tmallNav.style.display='block';
+// 			tmallNav.style.webkitTransition='all 2s ease';
+// 		}else{
+// 			tmallNav.style.display='none';
+// 		}
+// 		if (floor_item[0].getBoundingClientRect().top<=181) {
+// 			sn_nav_wrapper.style.display='block';
+// 		}else{
+// 			sn_nav_wrapper.style.display='none';
+// 		}
+// 	};
+// 	var timerId1=setTimeout(window.onscroll,3000);
+
+// };
